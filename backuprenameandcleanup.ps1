@@ -10,3 +10,6 @@ Rename-Item -path E:\BACKUP\WindowsImageBackup\G01SRV01 -newName $srv1name
 Rename-Item -path E:\BACKUP\WindowsImageBackup\G01SRV03 -newName $srv3name
 Rename-Item -path E:\BACKUP\WindowsImageBackup\G01SRV05 -newName $srv5name
 #Rename-Item -path E:\BACKUP\WindowsImageBackup\G01SRV04 -newName $srv4name
+
+$backups = Get-ChildItem -Path "E:\BACKUP" -Directory | Where-Object {$_.LastWriteTime -lt (Get-Date).AddDays(-7)}
+$backups | Remove-Item -Recurse -Force
